@@ -7,9 +7,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "webpack": "webpack",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production",
-    "start:dev": "webpack-dev-server"
+    "start:dev": "webpack-dev-server --mode=development"
   },
   "private": true,
   "dependencies": {

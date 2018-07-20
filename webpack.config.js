@@ -1,5 +1,5 @@
 const path = require('path');
-const merge = require('webpack-merge');
+// const merge = require('webpack-merge');
 const webpack = require('webpack');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -7,6 +7,7 @@ const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ScriptExtPlugin = require('script-ext-html-webpack-plugin');
 
 const devMode = process.env.NODE_ENV === 'development';
 
@@ -113,10 +114,13 @@ module.exports = {
       inject: 'head',
       hash: false,
       chunksSortMode: 'manual',
-      chunks: ['polyfills', 'main']
+      chunks: ['polyfills', 'vendors', 'main']
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
+    }),
+    new ScriptExtPlugin({
+      defaultAttribute: 'defer'
     }),
     new webpack.IgnorePlugin(/vertx/),
     new ProgressPlugin(),
